@@ -2,17 +2,15 @@
   "name": "@athlete-dashboard/shared-types",
   "version": "0.0.0",
   "private": true,
-  "main": "./dist/index.js",
+  "main": "index.js",
   "types": "./dist/index.d.ts",
   "scripts": {
     "build": "tsc",
     "dev": "tsc -w",
-    "lint": "eslint \"**/*.ts*\""
+    "clean": "rm -rf dist"
   },
   "devDependencies": {
     "@types/node": "^22.8.4",
-    "eslint": "^8.0.0",
     "typescript": "^5.6.3"
-  },
-  "license": "MIT"
+  }
 }
