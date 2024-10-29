@@ -1,12 +1,17 @@
 {
-  "name": "shared-types",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "name": "@athlete-dashboard/shared-types",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc",
+    "dev": "tsc -w",
+    "lint": "eslint \"**/*.ts*\""
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
+  "devDependencies": {
+    "typescript": "^5.0.0",
+    "@types/node": "^20.0.0",
+    "eslint": "^8.0.0"
+  }
 }
