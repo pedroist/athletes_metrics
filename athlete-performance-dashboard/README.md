@@ -2,6 +2,17 @@
 
 Application with Node Hono, Prisma, React, Nx monorepo, React Query to measure athletes performances
 
+## How to run
+
+In the backend:
+```
+yarn dev
+```
+
+In the root folder with turbo:
+```
+yarn dev
+```
 
 # Turborepo starter
 
