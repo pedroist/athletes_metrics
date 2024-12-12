@@ -14,6 +14,11 @@ In the root folder with turbo:
 yarn dev
 ```
 
+Run backend from root folder:
+```
+yarn dev --filter=backend 
+```
+
 # Turborepo starter
 
 This is an official starter Turborepo.

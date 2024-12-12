@@ -1,4 +1,5 @@
 import { Context, Next } from 'hono'
+import { StatusCode } from 'hono/utils/http-status'
 import { HTTPException } from 'hono/http-exception'
 
 export class AppError extends Error {
@@ -15,7 +16,7 @@ export const errorHandler = async (c: Context, next: Next) => {
     if (error instanceof AppError) {
       return c.json(
         { success: false, message: error.message },
-        error.statusCode
+        error.statusCode as StatusCode
       )
     }
 
