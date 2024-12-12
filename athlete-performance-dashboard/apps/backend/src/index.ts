@@ -5,13 +5,15 @@ import { cors } from 'hono/cors'
 import { PrismaClient } from '@prisma/client'
 import 'dotenv/config'
 import { athleteRoutes } from './routes/athlete.routes'
+import { errorHandler } from './middlewares/error.middleware'
 
 const app = new Hono()
 export const prisma = new PrismaClient()
 
-// Middleware
+// Global middleware
 app.use('*', logger())
 app.use('*', cors())
+app.use('*', errorHandler)
 
 // Routes
 app.route('/api/athletes', athleteRoutes)
@@ -29,3 +31,9 @@ serve({
   fetch: app.fetch,
   port: Number(port)
 })
+
+// Graceful shutdown
+process.on('SIGTERM', async () => {
+  await prisma.$disconnect()
+  process.exit(0)
+}) 
