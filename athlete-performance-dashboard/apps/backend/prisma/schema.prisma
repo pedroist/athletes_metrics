@@ -8,7 +8,7 @@ datasource db {
 }
 
 model Athlete {
-  id              String             @id @default(uuid())
+  id              Int                @id @default(autoincrement())
   name            String
   age             Int
   team            String
@@ -18,8 +18,8 @@ model Athlete {
 }
 
 model PerformanceMetric {
-  id          String    @id @default(uuid())
-  athleteId   String
+  id          Int       @id @default(autoincrement())
+  athleteId   Int       @map("athlete_id")
   athlete     Athlete   @relation(fields: [athleteId], references: [id])
   metricType  MetricType
   value       Float

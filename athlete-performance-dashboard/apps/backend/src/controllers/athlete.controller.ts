@@ -18,7 +18,7 @@ export class AthleteController {
   }
 
   getAthleteById = async (c: Context) => {
-    const id = c.req.param('id')
+    const id = parseInt(c.req.param('id'))
     const athlete = await this.service.getAthleteById(id)
     
     if (!athlete) {
@@ -29,7 +29,7 @@ export class AthleteController {
   }
 
   updateAthlete = async (c: Context) => {
-    const id = c.req.param('id')
+    const id = parseInt(c.req.param('id'))
     const data = await c.req.json()
     
     const athlete = await this.service.updateAthlete(id, data)
@@ -37,13 +37,13 @@ export class AthleteController {
   }
 
   deleteAthlete = async (c: Context) => {
-    const id = c.req.param('id')
+    const id = parseInt(c.req.param('id'))
     await this.service.deleteAthlete(id)
     return c.json({ success: true, message: 'Athlete deleted successfully' })
   }
 
   createMetric = async (c: Context) => {
-    const athleteId = c.req.param('id')
+    const athleteId = parseInt(c.req.param('id'))
     const data = await c.req.json()
     
     const metric = await this.service.createMetric(athleteId, data)
@@ -51,7 +51,7 @@ export class AthleteController {
   }
 
   getAthleteMetrics = async (c: Context) => {
-    const athleteId = c.req.param('id')
+    const athleteId = parseInt(c.req.param('id'))
     const metricType = c.req.query('type') as MetricType | undefined
     
     const metrics = await this.service.getAthleteMetrics(athleteId, metricType)

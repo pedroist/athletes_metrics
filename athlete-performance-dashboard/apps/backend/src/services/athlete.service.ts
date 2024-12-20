@@ -13,23 +13,23 @@ export class AthleteService {
     return this.repository.getAllAthletes()
   }
 
-  async getAthleteById(id: string): Promise<Athlete | null> {
+  async getAthleteById(id: number): Promise<Athlete | null> {
     return this.repository.getAthleteById(id)
   }
 
-  async updateAthlete(id: string, data: UpdateAthleteInput): Promise<Athlete> {
+  async updateAthlete(id: number, data: UpdateAthleteInput): Promise<Athlete> {
     return this.repository.updateAthlete(id, data)
   }
 
-  async deleteAthlete(id: string): Promise<Athlete> {
+  async deleteAthlete(id: number): Promise<Athlete> {
     return this.repository.deleteAthlete(id)
   }
 
-  async createMetric(athleteId: string, data: CreateMetricInput): Promise<PerformanceMetric> {
+  async createMetric(athleteId: number, data: CreateMetricInput): Promise<PerformanceMetric> {
     return this.repository.createMetric(athleteId, data)
   }
 
-  async getAthleteMetrics(athleteId: string, metricType?: MetricType): Promise<PerformanceMetric[]> {
+  async getAthleteMetrics(athleteId: number, metricType?: MetricType): Promise<PerformanceMetric[]> {
     return this.repository.getAthleteMetrics(athleteId, metricType)
   }
 }

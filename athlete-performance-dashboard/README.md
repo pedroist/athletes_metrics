@@ -4,6 +4,17 @@ Application with Node Hono, Prisma, React, Nx monorepo, React Query to measure a
 
 ## How to run
 
+### Create DB (Assuming you're using PostgreSQL)
+```
+createdb -U postgres athlete_db_prisma
+```
+
+### Run migrations:
+From the backend directory
+```
+psql -U postgres -d athlete_db_prisma -f prisma/migrations/db.changelog-master.sql
+```
+
 In the backend:
 ```
 yarn dev

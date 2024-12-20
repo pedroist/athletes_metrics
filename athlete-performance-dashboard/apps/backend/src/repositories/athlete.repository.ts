@@ -1,5 +1,6 @@
 import { PrismaClient, Athlete, PerformanceMetric, MetricType } from '@prisma/client'
 import { CreateAthleteInput, UpdateAthleteInput, CreateMetricInput } from '../validators/athlete.validator'
+import { prisma } from '../lib/prisma'
 
 export class AthleteRepository {
   constructor(private prisma: PrismaClient) {}
@@ -12,27 +13,27 @@ export class AthleteRepository {
     return this.prisma.athlete.findMany()
   }
 
-  async getAthleteById(id: string): Promise<Athlete | null> {
+  async getAthleteById(id: number): Promise<Athlete | null> {
     return this.prisma.athlete.findUnique({
       where: { id },
       include: { performances: true }
     })
   }
 
-  async updateAthlete(id: string, data: UpdateAthleteInput): Promise<Athlete> {
+  async updateAthlete(id: number, data: UpdateAthleteInput): Promise<Athlete> {
     return this.prisma.athlete.update({
       where: { id },
       data
     })
   }
 
-  async deleteAthlete(id: string): Promise<Athlete> {
+  async deleteAthlete(id: number): Promise<Athlete> {
     return this.prisma.athlete.delete({
       where: { id }
     })
   }
 
-  async createMetric(athleteId: string, data: CreateMetricInput): Promise<PerformanceMetric> {
+  async createMetric(athleteId: number, data: CreateMetricInput): Promise<PerformanceMetric> {
     return this.prisma.performanceMetric.create({
       data: {
         ...data,
@@ -41,11 +42,11 @@ export class AthleteRepository {
     })
   }
 
-  async getAthleteMetrics(athleteId: string, metricType?: MetricType): Promise<PerformanceMetric[]> {
+  async getAthleteMetrics(athleteId: number, metricType?: MetricType): Promise<PerformanceMetric[]> {
     return this.prisma.performanceMetric.findMany({
       where: {
         athleteId,
-        ...(metricType && { metricType }) //  is equivalent to metricType: metricType when metricType is provided.
+        ...(metricType && { metricType })
       },
       orderBy: { timestamp: 'desc' }
     })
